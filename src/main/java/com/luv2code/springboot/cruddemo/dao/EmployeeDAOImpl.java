@@ -35,4 +35,30 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		return employees;
 	}
 
+	@Override
+	public Employee findById(int theId) {
+		// TODO Auto-generated method stub
+		Employee employeeFound = entityManager.find(Employee.class, theId);
+		
+		return employeeFound;
+	}
+
+	@Override
+	public Employee save(Employee theEmployee) {
+		// TODO Auto-generated method stub
+		// If id == 0 then it will save, else update the employee
+		Employee dbEmployee = entityManager.merge(theEmployee);
+		
+		return dbEmployee;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		// Find the employee 
+		Employee employeeDelete = entityManager.find(Employee.class, id);
+		
+		entityManager.remove(employeeDelete);
+	}
+
 }
