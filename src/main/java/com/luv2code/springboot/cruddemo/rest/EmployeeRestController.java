@@ -2,7 +2,7 @@ package com.luv2code.springboot.cruddemo.rest;
 
 import java.util.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,4 +36,12 @@ public class EmployeeRestController {
 	}
 	
 	// Add a post construct
+	@PostMapping("/employees")
+	public Employee addNewEmployee(@RequestBody Employee theEmployee) {
+		theEmployee.setId(0);
+		
+		Employee dbEmployee = employeeService.save(theEmployee);
+		
+		return dbEmployee;
+	}
 }
