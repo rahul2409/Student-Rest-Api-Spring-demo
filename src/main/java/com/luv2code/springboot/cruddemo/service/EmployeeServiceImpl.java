@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.luv2code.springboot.cruddemo.dao.EmployeeDAO;
 import com.luv2code.springboot.cruddemo.entity.Employee;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -19,6 +21,26 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public List<Employee> findAll() {
 		// TODO Auto-generated method stub
 		return employeeDAO.findAll();
+	}
+	
+	@Override
+	public Employee findById(int theId) {
+		// TODO Auto-generated method stub
+		return employeeDAO.findById(theId);
+	}
+	
+	@Transactional
+	@Override
+	public Employee save(Employee theEmployee) {
+		// TODO Auto-generated method stub
+		return employeeDAO.save(theEmployee);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		employeeDAO.deleteById(id);
 	}
 
 }
